@@ -36,14 +36,12 @@ def calculate_result(coefficients)
   # binding.pry
   discriminant = get_discriminant(a, b, c)
 
-  if discriminant > 0
+  if discriminant.positive?
     discriminant_more_then_one(a, b, c, discriminant)
-  elsif discriminant == 0
+  elsif discriminant.zero?
     discriminant_equal_one(a, b, discriminant)
-  elsif discriminant < 0
-    puts "-- Дискриминант D=#{discriminant}, корней нет"
   else
-    puts "-- Неизвестный результат"
+    puts "-- Дискриминант D=#{discriminant}, корней нет"
   end
 end
 
@@ -54,8 +52,9 @@ def get_discriminant(a, b, c)
 end
 
 def discriminant_more_then_one(a, b, c, discriminant)
-  х1 = (b*-1 + Math.sqrt(discriminant))/(2*a)
-  x2 = (b*-1 - Math.sqrt(discriminant))/(2*a)
+  c = Math.sqrt(discriminant)
+  х1 = (b*-1 + c)/(2*a)
+  x2 = (b*-1 - c)/(2*a)
   puts "-- Мы получили корни со значением x1=#{х1}, x2=#{x2} и дискрминант D=#{discriminant}"
 end
 
