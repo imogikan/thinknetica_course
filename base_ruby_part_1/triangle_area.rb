@@ -36,7 +36,7 @@ end
 def get_square(values)
   base = values[:base]
   height = values[:height]
-  square = (1/2.to_f * height * base).round(2)
+  square = (0.5 * height * base).round(2)
 
   puts "-- Площадь треугольника с высотой: #{height} и основанием: #{base}, равна #{square}".green
   square
