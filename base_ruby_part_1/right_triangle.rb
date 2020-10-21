@@ -16,22 +16,20 @@ def get_value(value)
 
   answer = gets.chomp.to_i
 
-  puts "-- Проверка #{value} стороны треугольника".yellow
-
-  until correct_value?(answer)
+  until correct_value?(answer, value)
     answer = get_value(value)
   end
-
-  puts "-- Значение #{value} стороны треугольника введено верно".green
 
   answer
 end
 
-def correct_value?(number)
+def correct_value?(number, value)
+  puts "-- Проверка #{value} стороны треугольника".yellow
   if number <= 0
     puts "-- Пожалуйста, введите число > 0".red
     return false
   end
+  puts "-- Значение #{value} стороны треугольника введено верно".green
 
   true
 end
@@ -56,21 +54,15 @@ end
 
 def is_right?(sides)
   hypotenuse = sides.last
-  return true if hypotenuse**2 == (sides[0]**2 + sides[1]**2)
-
-  false
+  hypotenuse**2 == (sides[0]**2 + sides[1]**2)
 end
 
 def isosceles?(sides)
-  return true if sides.uniq.size == 2
-
-  false
+  sides.uniq.size == 2
 end
 
 def equilateral?(sides)
-  return true if sides.uniq.size == 1
-
-  false
+  sides.uniq.size == 1
 end
 
 sides = get_all_sides
