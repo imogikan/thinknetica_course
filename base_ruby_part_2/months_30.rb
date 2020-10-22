@@ -2,7 +2,7 @@ require 'pry'
 require 'date'
 require 'pp'
 
-months_count = (1..12).to_a
+months_count = (1..12)
 month_with_days = {}
 
 months_count.each do |month|
