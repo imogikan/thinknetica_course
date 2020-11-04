@@ -1,10 +1,15 @@
-require 'pry'
-def calculate_number(number)
-  fibonacci_seq(0, 1, number)
+def fibonacci(number)
+  number < 2 ? number : fibonacci(number - 1) + fibonacci(number - 2)
 end
 
-def fibonacci_seq(first, second, number)
-  number == 0 ? first : fibonacci_seq(second, first + second, number - 1)
+arr = []
+i = 0
+loop do
+  number = fibonacci(i)
+  break if number > 100
+  arr << number
+  i += 1
 end
 
-p (0..100).map { |number| calculate_number(number) }
+puts arr
+
