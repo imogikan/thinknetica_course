@@ -18,8 +18,8 @@ class Route
 
   def all_stations
     puts "The route have stations:\n"
-    stations.each_with_index do |station, index|
-      print "[#{index + 1}] #{station} || "
+    stations.each.with_index(1) do |station, index|
+      print "[#{index}] #{station} || "
     end
 
     nil
