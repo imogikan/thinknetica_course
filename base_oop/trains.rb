@@ -62,7 +62,7 @@ class Train
       when :forward
         new_station_number = current_station_number.next
       when :back
-        new_station_number = current_station_number.pred
+        new_station_number = current_station_number.previous
       end
 
       self.current_station = route.stations[new_station_number]
