@@ -43,9 +43,7 @@ class Station
   end
 
   def one_train?(train)
-    return if train.is_a?(Array) && train.size > 1
-
-    true
+    train.is_a?(Array) && train.size > 1 ? false : true
   end
 
 end
