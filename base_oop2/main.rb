@@ -3,15 +3,28 @@ require_relative 'trains/train_wrapper'
 require_relative 'route'
 require_relative 'station'
 require 'pry'
+require 'optimist'
 
 class Trip
   attr_reader :stations, :trains, :routes, :carriages
+
+  $opts = Optimist::options do
+    opt :debug, "debug mode"
+  end
 
   def initialize
     @stations = []
     @routes = []
     @trains = []
     @carriages = []
+    init_debug_mode if $opts[:debug]
+  end
+
+  def init_debug_mode
+    @trains = [TrainWrapper.create_train("123", :pass)]
+    @carriages = [CarriageWrapper.create_carriage(:pass, 1000)]
+    @stations = [Station.new("Samara"), Station.new("Moscow"), Station.new("Minsk")]
+    @routes = [Route.new(@stations.first, @stations.last)]
   end
 
   def start_trip
@@ -125,6 +138,13 @@ class Trip
     return unless train
 
     direction = get_user_data(addition_info: directions) { "Insert direction of moving:" }
+    case direction
+    when 1
+      direction = :forward
+    when 2
+      direction = :back
+    end
+
     train.move_train(direction: direction)
   end
 
@@ -170,7 +190,7 @@ class Trip
     return unless train
 
     if routes.any?
-      route_index = get_user_data(addition_info: available_trains) { "Choice route:" }
+      route_index = get_user_data(addition_info: avaiblable_routes) { "Choice route:" }
       route = routes[route_index]
     else
       puts "First, need to create route"
