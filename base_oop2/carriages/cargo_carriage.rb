@@ -1,4 +1,4 @@
-require_relative 'carriages'
+require_relative 'carriage'
 
 class CargoCarriage < Carriage; end
 

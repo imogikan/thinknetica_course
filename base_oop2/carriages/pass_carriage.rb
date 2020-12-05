@@ -1,3 +1,3 @@
-require_relative 'carriages'
+require_relative 'carriage'
 
 class PassCarriage < Carriage; end

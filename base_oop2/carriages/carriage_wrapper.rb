@@ -1,5 +1,5 @@
-require_relative 'pass_carriages'
-require_relative 'cargo_carriages'
+require_relative 'pass_carriage'
+require_relative 'cargo_carriage'
 
 class CarriageWrapper
   def self.create_carriage(type, capacity)

@@ -1,7 +1,7 @@
-require_relative 'carriages/carriages_wrapper'
-require_relative 'trains/trains_wrapper'
-require_relative 'routes'
-require_relative 'stations'
+require_relative 'carriages/carriage_wrapper'
+require_relative 'trains/train_wrapper'
+require_relative 'route'
+require_relative 'station'
 require 'pry'
 
 class Trip
@@ -154,7 +154,6 @@ class Trip
   def add_carriage_to_train
     train = select_train
     return unless train
-    binding.pry
     if available_carriages(train.type)
       carriage_index = get_user_data(addition_info: available_carriages(train.type)) { "Choice carriage:" }
       carriage = carriages[carriage_index]

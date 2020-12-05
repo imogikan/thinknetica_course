@@ -1,5 +1,5 @@
-require_relative 'cargo_trains'
-require_relative 'pass_trains'
+require_relative 'cargo_train'
+require_relative 'pass_train'
 
 class TrainWrapper
   def self.create_train(number, type)
