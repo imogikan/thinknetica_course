@@ -1,11 +1,16 @@
 require_relative '../mixins/manufacturer'
-
+require 'pry'
 class Train
   attr_accessor :speed, :route, :current_station
   attr_reader :number, :type, :carriages
-  include Manufacturer
+  include Manufactuter
 
   SPEED_STEP = 10
+  @@all_trains = []
+
+  def self.find(number)
+    @@all_trains.find { |train| train.number == number }
+  end
 
   def initialize(number, type)
     self.speed = 0
@@ -14,6 +19,7 @@ class Train
     @carriages = []
     self.route = nil
     self.current_station = nil
+    @@all_trains << self
   end
 
   def speed_up
@@ -94,3 +100,8 @@ class Train
     [route.stations.first, route.stations.last].include?(current_station)
   end
 end
+
+
+tr1 = Train.new(123, :cargo)
+binding.pry
+Train.find(122)
