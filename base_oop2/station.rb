@@ -2,10 +2,16 @@ require 'pry'
 
 class Station
   attr_reader :name, :trains
+  @@all_stations = []
+
+  def self.all
+    @@all_stations
+  end
 
   def initialize(name)
     @name = name
     @trains = []
+    @@all_stations << self
   end
 
   def recieve_train(train)
@@ -45,5 +51,9 @@ class Station
   def one_train?(train)
     train.is_a?(Array) && train.size > 1 ? false : true
   end
-
 end
+
+st1 = Station.new("one")
+st2 = Station.new("two")
+st2 = Station.new("three")
+puts Station.all
