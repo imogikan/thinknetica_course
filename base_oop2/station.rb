@@ -1,7 +1,10 @@
 require 'pry'
+require 'mixins/instance_counter'
 
 class Station
   attr_reader :name, :trains
+  include InstanceCounter
+
   @@all_stations = []
 
   def self.all
@@ -12,6 +15,7 @@ class Station
     @name = name
     @trains = []
     @@all_stations << self
+    register_instance
   end
 
   def recieve_train(train)

@@ -1,9 +1,12 @@
 require_relative '../mixins/manufacturer'
+require_relative '../mixins/instance_counter'
 require 'pry'
+
 class Train
   attr_accessor :speed, :route, :current_station
   attr_reader :number, :type, :carriages
   include Manufactuter
+  include InstanceCounter
 
   SPEED_STEP = 10
   @@all_trains = []
@@ -19,7 +22,10 @@ class Train
     @carriages = []
     self.route = nil
     self.current_station = nil
+
     @@all_trains << self
+
+    register_instance
   end
 
   def speed_up
@@ -103,5 +109,7 @@ end
 
 
 tr1 = Train.new(123, :cargo)
+tr2 = Train.new(123, :cargo)
+tr3 = Train.new(123, :cargo)
 binding.pry
 Train.find(122)

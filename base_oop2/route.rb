@@ -1,8 +1,12 @@
+require_relative 'mixins/instance_counter'
+
 class Route
   attr_reader :stations
+  include InstanceCounter
 
   def initialize(start_point, end_point)
     @stations = [start_point, end_point]
+    register_instance
   end
 
   def insert_way_station(station)
