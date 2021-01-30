@@ -1,6 +1,9 @@
+require_relative '../mixins/manufacturer'
+
 class Train
   attr_accessor :speed, :route, :current_station
   attr_reader :number, :type, :carriages
+  include Manufacturer
 
   SPEED_STEP = 10
 
