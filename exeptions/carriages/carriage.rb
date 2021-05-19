@@ -8,14 +8,14 @@ class Carriage
   def initialize(type, capacity)
     @type = type
     @capacity = capacity
-    valid?
+    raise unless valid?
   end
 
   private
 
   def valid?
-    raise "-- Params can't be blank or nil" if type.nil? || type.empty? || capacity.nil?
-    raise "-- Capacity should be great then zero" unless capacity.positive?
+    return false if type.nil? || type.empty? || capacity.nil?
+    return false unless capacity.positive?
 
     true
   end

@@ -30,7 +30,9 @@ class Train
 
     @@all_trains << self
 
-    valid?
+    raise unless valid?
+    validate_train_number!
+
     register_instance
   end
 
@@ -115,8 +117,7 @@ class Train
   private
 
   def valid?
-    raise "-- Params can't be blank or nil" if type.nil? || type.empty? || number.nil?
-    validate_train_number!
+    return false if type.nil? || type.empty? || number.nil?
 
     true
   end

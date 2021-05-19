@@ -14,7 +14,7 @@ class Station
   def initialize(name)
     @name = name
     @trains = []
-    valid?
+    raise unless valid?
 
     @@all_stations << self
 
@@ -60,7 +60,7 @@ class Station
   end
 
   def valid?
-    raise "-- Name can't be blank or nil" if name.nil? || name.empty?
+    return false if name.nil? || name.empty?
 
     true
   end
